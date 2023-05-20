@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerRaycast : MonoBehaviour
 {
-    private readonly float rayDistance = 2f;
+    private readonly float rayDistance = 5f;
 
     void Update()
     {
