@@ -4,7 +4,16 @@
 [Oo]bj/
 [Bb]uild/
 [Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
 Assets/AssetStoreTools*
+
+# MemoryCaptures can get excessive in size.
+# They also could contain extremely sensitive data
+[Mm]emoryCaptures/
+
+# Recordings can get excessive in size
+[Rr]ecordings/
 
 # Visual Studio cache directory
 .vs/
@@ -23,18 +32,23 @@ ExportedObj/
 *.booproj
 *.svd
 *.pdb
+*.mdb
 *.opendb
+*.VC.db
 
 # Unity3D generated meta files
 *.pidb.meta
 *.pdb.meta
+*.mdb.meta
 
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
 
 # Builds
 *.apk
+*.aab
 *.unitypackage
+*.app
 
 # Mac stuff
 .DS_Store
@@ -50,10 +64,10 @@ sysinfo.txt
 !/[Aa}ssets/Editor Default Resources/FMOD/*
 
 # Ignore the Cache-file since it is updated locally either way
-/[Aa]ssets/**/FMODStudioCache.asset
-/[Aa]ssets/**/FMODStudioCache.asset.meta
-/[Aa]ssets/Plugins/FMOD/Cache.meta
-/[Aa]ssets/Plugins/FMOD/Cache/Editor.meta
+[Aa]ssets/**/FMODStudioCache.asset
+[Aa]ssets/**/FMODStudioCache.asset.meta
+[Aa]ssets/Plugins/FMOD/Cache.meta
+[Aa]ssets/Plugins/FMOD/Cache/Editor.meta
 
 # Log-files
 fmod.log
