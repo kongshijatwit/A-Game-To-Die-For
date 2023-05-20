@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CardHandler : MonoBehaviour, IRaycastable
 {
+    [SerializeField] private RPS type;
     [SerializeField] private Animator anim;
     [SerializeField] private float yPos;
 
@@ -22,7 +23,7 @@ public class CardHandler : MonoBehaviour, IRaycastable
         if (Input.GetMouseButtonDown(0))
         {
             // Send to board
-            Debug.Log(gameObject.name + " has been selected");
+            GameManager.instance.SendToBoard(type);
         }
     }
 
@@ -30,4 +31,11 @@ public class CardHandler : MonoBehaviour, IRaycastable
     {
         anim.SetBool("HoveringOver", false);
     }
+}
+
+public enum RPS 
+{ 
+    ROCK, 
+    PAPER, 
+    SCISSORS 
 }
