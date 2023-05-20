@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerRaycast : MonoBehaviour
 {
     private readonly float rayDistance = 5f;
+    private Transform currentObject = null;
 
     void Update()
     {
@@ -12,6 +13,12 @@ public class PlayerRaycast : MonoBehaviour
         {
             // Everything that happens when the raycast hits something
             hit.transform.GetComponent<IRaycastable>().HandleRaycast(this);
+            currentObject = hit.transform;
+        }
+        else if (currentObject != null)
+        {
+            currentObject.GetComponent<IRaycastable>().HandleNullRay(this);
+            currentObject = null;
         }
 
         // Draws a ray in the scene view - remember to turn on gizmos
