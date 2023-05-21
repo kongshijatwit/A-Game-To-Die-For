@@ -4,13 +4,24 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    [SerializeField] private GameObject cardGroup;
+
     private void Awake() 
     {
         instance = this;
     }
 
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            cardGroup.SetActive(true);
+        }
+    }
+
     public void SendToBoard(RPS playerChoice)
     {
+        cardGroup.SetActive(false);
+
         // Do AI things
         RPS aiChoice = (RPS)Random.Range(0, 3);
 
