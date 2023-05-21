@@ -254,11 +254,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -1031938952
-      Data2: 1077555760
-      Data3: -1174011989
-      Data4: 1560341208
-    Path: event:/Test
+      Data1: -83440233
+      Data2: 1215213439
+      Data3: 1470204033
+      Data4: 1690735929
+    Path: event:/Ambiance
   Event: 
   PlayEvent: 1
   StopEvent: 2
