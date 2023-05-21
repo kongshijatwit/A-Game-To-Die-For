@@ -14,32 +14,35 @@ public class GameManager : MonoBehaviour
     [Header("Card Objects")]
     [SerializeField] private GameObject cardGroup;
     [SerializeField] private GameObject selectedCardsGroup;
+    [SerializeField] private GameObject aiCardSelected;
+
+    [Header("AI Card Prefabs")]
+    [SerializeField] private GameObject[] aiCardPrefabs;
 
     private void Awake() 
     {
         instance = this;
     }
 
-    private void Update() 
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            cardGroup.SetActive(true);
-        }
-    }
-
     public void SendToBoard(GameObject playerCard)
     {
-        // Pull out RPS selection from GameObject
+        // AI picks a card
+        Transform aiCard = Instantiate(aiCardPrefabs[UnityEngine.Random.Range(0, 3)].transform, aiCardSelected.transform);
+        aiCard.GetComponent<Animator>().enabled = false;
+        aiCard.gameObject.layer = LayerMask.NameToLayer("Default");
+
+        // Pull out RPS enum from GameObject
         RPS playerChoice = playerCard.GetComponent<CardHandler>().getChoice();
-        RPS aiChoice = (RPS)UnityEngine.Random.Range(0, 3);
+        RPS aiChoice = aiCard.GetComponent<CardHandler>().getChoice();
 
         // Calculate
         Debug.Log("Player picked: " + playerChoice + " / AI picked: " + aiChoice);
         Calculate(playerChoice, aiChoice);
 
         // Transfer selected card, then drop rest
-        SelectionParentTransfer(playerCard.transform);
+        playerCard.transform.parent = selectedCardsGroup.transform;
+        playerCard.layer = LayerMask.NameToLayer("Default");
+        cardGroup.GetComponent<CardGroup>().MoveRight();
     }
 
     private void TakeDamage(Slider recipiant, float amount)
@@ -84,17 +87,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void SelectionParentTransfer(Transform child)
-    {
-        child.transform.parent = selectedCardsGroup.transform;
-        foreach (Transform t in cardGroup.transform)
-        {
-            t.position = new Vector3(t.position.x, 0, t.position.y);
-            t.GetComponent<CardHandler>().enabled = false;
-        }
-        //cardGroup.GetComponent<CardGroup>().MoveDown();
-    }
-
 #region 
     private void PlayerWin()
     {
@@ -125,5 +117,4 @@ public class GameManager : MonoBehaviour
         Debug.Log("RandomCard");
     }
 #endregion
-    
 }
