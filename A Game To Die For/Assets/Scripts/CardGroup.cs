@@ -1,16 +1,19 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CardGroup : MonoBehaviour
 {
     [SerializeField] private Transform[] cards;
     public float percent = 1f;
-    public Transform cardPrefab;
+    public Transform[] cardPrefabList;
+    private float distance = 5.5f;
+    private float currY;
+    private float newY;
 
     private void Start()
     {
-        ParentCards();
+        currY = transform.position.x;
+        newY = currY + distance;
     }
 
     private void Update() 
@@ -25,35 +28,32 @@ public class CardGroup : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.H))
         {
-            ResetInit();
+            DeleteCards();
         }
         else if (Input.GetKeyDown(KeyCode.B))
         {
-            SetNewCards(cardPrefab, 0);
+            SetNewCards(cardPrefabList);
         }
     }
 
-    public void ParentCards()
+    public void SetNewCards(Transform[] cardPrefabs)
     {
-        for (int i = 0; i < 3; i++)
-        {
-            cards[i].transform.parent = gameObject.transform.GetChild(i);
-        }
-    }
-
-    public void SetNewCards(Transform cardPrefab, int position)
-    {
-        if (position > 2) 
+        if (cardPrefabs.Length > 3)
         { 
-            Debug.LogWarning("Position can only be from 0 to 2"); 
+            Debug.LogWarning("Too many elements in cardprefab"); 
             return; 
         }
-        cards[position] = cardPrefab;
-        Transform g = Instantiate(cardPrefab);
-        g.transform.parent = cards[position];
+
+        for (int i = 0; i < 3; i++)
+        {
+            Transform newCard = Instantiate(cardPrefabs[i]);
+            newCard.transform.parent = transform.GetChild(i);
+        }
+
+        cards = cardPrefabs;
     }
 
-    public void ResetInit()
+    public void DeleteCards()
     {
         for (int i = 0; i < 3; i++)
         {
@@ -68,19 +68,16 @@ public class CardGroup : MonoBehaviour
         
         while (moveDown && percent > 0)
         {
-            transform.position = new Vector3(transform.position.x, Mathf.Lerp(-2f, 0.5f, percent), transform.position.z);
+            transform.position = new Vector3(Mathf.Lerp(currY, newY, percent), transform.position.y, transform.position.z);
             percent += -moveSpeed * Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
 
         while (!moveDown && percent <= 1)
         {
-            transform.position = new Vector3(transform.position.x, Mathf.Lerp(-2f, 0.5f, percent), transform.position.z);
+            transform.position = new Vector3(Mathf.Lerp(currY, newY, percent), transform.position.y, transform.position.z);
             percent += moveSpeed * Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
-
-        Mathf.Round(percent);
-        yield return new WaitForEndOfFrame();
     }
 }
