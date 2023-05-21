@@ -1324,6 +1324,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e25982e56a4a050468a7f30cc2206413, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cards:
+  - {fileID: 1509852432}
+  - {fileID: 91437070}
+  - {fileID: 1447764491}
+  percent: 1
+  cardPrefab: {fileID: 0}
 --- !u!1001 &1509852431
 PrefabInstance:
   m_ObjectHideFlags: 0

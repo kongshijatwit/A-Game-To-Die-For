@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
             t.position = new Vector3(t.position.x, 0, t.position.y);
             t.GetComponent<CardHandler>().enabled = false;
         }
-        cardGroup.GetComponent<CardGroup>().MoveDown();
+        //cardGroup.GetComponent<CardGroup>().MoveDown();
     }
 
 #region 
