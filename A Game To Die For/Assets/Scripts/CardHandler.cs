@@ -3,17 +3,11 @@ using UnityEngine;
 public class CardHandler : MonoBehaviour, IRaycastable
 {
     [SerializeField] private RPS type;
-    [SerializeField] private float yPos;
     private Animator anim;
 
     private void Start() 
     {
         anim = GetComponent<Animator>();
-    }
-
-    private void Update() 
-    {
-        transform.position = new Vector3(transform.position.x, yPos, transform.position.z);
     }
 
     public void HandleRaycast(PlayerRaycast player)

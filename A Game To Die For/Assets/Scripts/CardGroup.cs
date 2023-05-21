@@ -16,26 +16,6 @@ public class CardGroup : MonoBehaviour
         newY = currY + distance;
     }
 
-    private void Update() 
-    {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            StartCoroutine(nameof(LerpGroup), true);
-        }
-        else if (Input.GetKeyDown(KeyCode.G))
-        {
-            StartCoroutine(nameof(LerpGroup), false);
-        }
-        else if (Input.GetKeyDown(KeyCode.H))
-        {
-            DeleteCards();
-        }
-        else if (Input.GetKeyDown(KeyCode.B))
-        {
-            SetNewCards(cardPrefabList);
-        }
-    }
-
     public void SetNewCards(Transform[] cardPrefabs)
     {
         if (cardPrefabs.Length > 3)
@@ -62,22 +42,35 @@ public class CardGroup : MonoBehaviour
         }
     }
 
-    public IEnumerator LerpGroup(bool moveDown)
+    public void MoveRight()
+    {
+        StartCoroutine(nameof(LerpGroup), true);
+    }
+
+    public IEnumerator LerpGroup(bool moveRight)
     {
         float moveSpeed = 1f;
-        
-        while (moveDown && percent > 0)
+
+        if (moveRight)
         {
-            transform.position = new Vector3(Mathf.Lerp(currY, newY, percent), transform.position.y, transform.position.z);
-            percent += -moveSpeed * Time.deltaTime;
-            yield return new WaitForEndOfFrame();
+            while (percent <= 1)
+            {
+                transform.position = new Vector3(Mathf.Lerp(currY, newY, percent), transform.position.y, transform.position.z);
+                percent += moveSpeed * Time.deltaTime;
+                yield return new WaitForEndOfFrame();
+            }
+
+            DeleteCards();
         }
 
-        while (!moveDown && percent <= 1)
+        if (!moveRight)
         {
-            transform.position = new Vector3(Mathf.Lerp(currY, newY, percent), transform.position.y, transform.position.z);
-            percent += moveSpeed * Time.deltaTime;
-            yield return new WaitForEndOfFrame();
+            while (percent > 0)
+            {
+                transform.position = new Vector3(Mathf.Lerp(currY, newY, percent), transform.position.y, transform.position.z);
+                percent += -moveSpeed * Time.deltaTime;
+                yield return new WaitForEndOfFrame();
+            }
         }
     }
 }
