@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,7 +6,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    [Header("Health Bars")]
     [SerializeField] private Slider playerHealth;
+    [SerializeField] private Slider reaperHealth;
+    private const float FIXED_DAMAGE = 0.25f;
+
+    [Header("Card")]
     [SerializeField] private GameObject cardGroup;
 
     private void Awake() 
@@ -23,14 +29,18 @@ public class GameManager : MonoBehaviour
 
     public void SendToBoard(RPS playerChoice)
     {
-        cardGroup.SetActive(false);
-
         // Do AI things
-        RPS aiChoice = (RPS)Random.Range(0, 3);
+        RPS aiChoice = (RPS)UnityEngine.Random.Range(0, 3);
 
         // Calculate
         Debug.Log("Player picked: " + playerChoice + " / AI picked: " + aiChoice);
+        Calculate(playerChoice, aiChoice);
 
+        cardGroup.SetActive(false);
+    }
+
+    private void Calculate(RPS playerChoice, RPS aiChoice)
+    {
         if (playerChoice == aiChoice) 
         { 
             PlayerDraw();
@@ -68,16 +78,18 @@ public class GameManager : MonoBehaviour
     private void PlayerWin()
     {
         Debug.Log("PlayerWin");
-    }
-
-    private void PlayerDraw()
-    {
-        Debug.Log("PlayerDraw");
+        TakeDamage(reaperHealth, FIXED_DAMAGE);
     }
 
     private void PlayerLose()
     {
         Debug.Log("PlayerLose");
+        TakeDamage(playerHealth, FIXED_DAMAGE);
+    }
+
+    private void PlayerDraw()
+    {
+        Debug.Log("PlayerDraw");
     }
 
     private void PlayerAddLife()
@@ -88,5 +100,11 @@ public class GameManager : MonoBehaviour
     private void RandomCard()
     {
         Debug.Log("RandomCard");
+    }
+
+    private void TakeDamage(Slider recipiant, float amount)
+    {
+        recipiant.value -= amount;
+        Math.Round(recipiant.value, 2);
     }
 }
