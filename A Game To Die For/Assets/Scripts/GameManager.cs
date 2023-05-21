@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    [SerializeField] private Slider playerHealth;
     [SerializeField] private GameObject cardGroup;
 
     private void Awake() 
@@ -11,7 +13,8 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
 
-    private void Update() {
+    private void Update() 
+    {
         if (Input.GetKeyDown(KeyCode.E))
         {
             cardGroup.SetActive(true);
@@ -27,11 +30,24 @@ public class GameManager : MonoBehaviour
 
         // Calculate
         Debug.Log("Player picked: " + playerChoice + " / AI picked: " + aiChoice);
-        if (aiChoice == playerChoice) 
+
+        if (playerChoice == aiChoice) 
         { 
             PlayerDraw();
             return;
         }
+
+        switch (playerChoice)
+        {
+            case RPS.MYSTERY:
+                RandomCard();
+                return;
+
+            case RPS.LIFE:
+                PlayerAddLife();
+                return;
+        }
+
         switch (playerChoice, aiChoice)
         {
             case (RPS.ROCK, RPS.PAPER):
@@ -62,5 +78,15 @@ public class GameManager : MonoBehaviour
     private void PlayerLose()
     {
         Debug.Log("PlayerLose");
+    }
+
+    private void PlayerAddLife()
+    {
+        Debug.Log("PlayerAddLife");
+    }
+
+    private void RandomCard()
+    {
+        Debug.Log("RandomCard");
     }
 }

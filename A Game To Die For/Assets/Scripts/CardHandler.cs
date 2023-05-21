@@ -37,5 +37,7 @@ public enum RPS
 { 
     ROCK, 
     PAPER, 
-    SCISSORS 
+    SCISSORS,
+    LIFE,
+    MYSTERY
 }
