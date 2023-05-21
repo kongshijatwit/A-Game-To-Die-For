@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
         RPS aiChoice = (RPS)Random.Range(0, 3);
 
         // Calculate
-        Debug.Log("Player picked: " + playerChoice + "/ AI picked: " + aiChoice);
+        Debug.Log("Player picked: " + playerChoice + " / AI picked: " + aiChoice);
         if (aiChoice == playerChoice) 
         { 
             PlayerDraw();

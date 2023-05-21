@@ -9,7 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2709563256068320035}
-  m_Layer: 0
+  - component: {fileID: -5935201026519356488}
+  - component: {fileID: 1571845696896202069}
+  - component: {fileID: 9104199845117376821}
+  m_Layer: 6
   m_Name: Card_Scissors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32,6 +35,53 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &-5935201026519356488
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2709563256068320032}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b51d94d2c1e31124498bdb78ee01aff0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+--- !u!65 &1571845696896202069
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2709563256068320032}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.3897117, z: 0.02934974}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &9104199845117376821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2709563256068320032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d20a9ee61d3e3d4085485088efe9ca1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
+  yPos: 0
 --- !u!1001 &4867670823023969719
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -98,6 +148,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 32185e806fa40f9468fdda9ed8c0977f, type: 3}
       propertyPath: m_Name
       value: Reaper_Card_Scissors
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 32185e806fa40f9468fdda9ed8c0977f, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32185e806fa40f9468fdda9ed8c0977f, type: 3}

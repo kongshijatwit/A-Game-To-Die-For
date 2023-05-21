@@ -3,8 +3,8 @@ using UnityEngine;
 public class CardHandler : MonoBehaviour, IRaycastable
 {
     [SerializeField] private RPS type;
-    [SerializeField] private Animator anim;
     [SerializeField] private float yPos;
+    private Animator anim;
 
     private void Start() 
     {
