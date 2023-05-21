@@ -11,8 +11,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Slider reaperHealth;
     private const float FIXED_DAMAGE = 0.25f;
 
-    [Header("Card")]
+    [Header("Card Objects")]
     [SerializeField] private GameObject cardGroup;
+    [SerializeField] private GameObject selectedCardsGroup;
 
     private void Awake() 
     {
@@ -27,16 +28,24 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SendToBoard(RPS playerChoice)
+    public void SendToBoard(GameObject playerCard)
     {
-        // Do AI things
+        // Pull out RPS selection from GameObject
+        RPS playerChoice = playerCard.GetComponent<CardHandler>().getChoice();
         RPS aiChoice = (RPS)UnityEngine.Random.Range(0, 3);
 
         // Calculate
         Debug.Log("Player picked: " + playerChoice + " / AI picked: " + aiChoice);
         Calculate(playerChoice, aiChoice);
 
-        cardGroup.SetActive(false);
+        // Transfer selected card, then drop rest
+        SelectionParentTransfer(playerCard.transform);
+    }
+
+    private void TakeDamage(Slider recipiant, float amount)
+    {
+        recipiant.value -= amount;
+        Math.Round(recipiant.value, 2);
     }
 
     private void Calculate(RPS playerChoice, RPS aiChoice)
@@ -75,6 +84,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void SelectionParentTransfer(Transform child)
+    {
+        child.transform.parent = selectedCardsGroup.transform;
+        foreach (Transform t in cardGroup.transform)
+        {
+            t.position = new Vector3(t.position.x, 0, t.position.y);
+            t.GetComponent<CardHandler>().enabled = false;
+        }
+        cardGroup.GetComponent<CardGroup>().MoveDown();
+    }
+
+#region 
     private void PlayerWin()
     {
         Debug.Log("PlayerWin");
@@ -91,7 +112,9 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("PlayerDraw");
     }
+#endregion
 
+#region Other Card Conditions
     private void PlayerAddLife()
     {
         Debug.Log("PlayerAddLife");
@@ -101,10 +124,6 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("RandomCard");
     }
-
-    private void TakeDamage(Slider recipiant, float amount)
-    {
-        recipiant.value -= amount;
-        Math.Round(recipiant.value, 2);
-    }
+#endregion
+    
 }

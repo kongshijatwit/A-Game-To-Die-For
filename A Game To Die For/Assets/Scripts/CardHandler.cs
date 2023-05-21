@@ -23,13 +23,19 @@ public class CardHandler : MonoBehaviour, IRaycastable
         if (Input.GetMouseButtonDown(0))
         {
             // Send to board
-            GameManager.instance.SendToBoard(type);
+            GameManager.instance.SendToBoard(gameObject);
+            anim.enabled = false;
         }
     }
 
     public void HandleNullRay(PlayerRaycast player)
     {
         anim.SetBool("HoveringOver", false);
+    }
+
+    public RPS getChoice()
+    {
+        return type;
     }
 }
 
