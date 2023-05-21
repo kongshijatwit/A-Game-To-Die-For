@@ -61,6 +61,9 @@ public class CardGroup : MonoBehaviour
             }
 
             DeleteCards();
+
+            // Replace for random cards
+            // SetNewCards();
         }
 
         if (!moveRight)
