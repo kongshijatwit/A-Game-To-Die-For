@@ -5,11 +5,12 @@ using UnityEngine.SceneManagement;
 public class MainMenuHandler : MonoBehaviour
 {
     [SerializeField] private GameObject mainMenuContainer;
-    [SerializeField] private GameObject reaper;
+    [SerializeField] private Animator reaperAnim;
 
     public void StartButtonClicked()
     {
         StartCoroutine(nameof(LoadNextScene));
+        reaperAnim.SetTrigger("Move");
         FMODUnity.RuntimeManager.PlayOneShot("event:/Click", GetComponent<Transform>().position);
     }
 
@@ -22,8 +23,7 @@ public class MainMenuHandler : MonoBehaviour
     private IEnumerator LoadNextScene()
     {
         mainMenuContainer.SetActive(false);
-        reaper.transform.Translate(new Vector3(0, 0, 1f), Space.World);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.2f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);     
     }
 }

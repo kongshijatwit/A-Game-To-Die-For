@@ -422,11 +422,11 @@ Transform:
   m_Children:
   - {fileID: 1983356705}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &780539679 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3850217451657733568, guid: beacecba5091ebf48800ae3f8f2d7776, type: 3}
+--- !u!95 &780539680 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1750520829, guid: beacecba5091ebf48800ae3f8f2d7776, type: 3}
   m_PrefabInstance: {fileID: 1697515730}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &839986572
@@ -485,7 +485,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 996824661379413728, guid: 1c23b256fd2aa6442b733c122bd44ac9, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 996824661379413728, guid: 1c23b256fd2aa6442b733c122bd44ac9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -762,7 +762,7 @@ RectTransform:
   m_Children:
   - {fileID: 1812401672}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -782,7 +782,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainMenuContainer: {fileID: 1812401671}
-  reaper: {fileID: 780539679}
+  reaperAnim: {fileID: 780539680}
 --- !u!1 &1302595398
 GameObject:
   m_ObjectHideFlags: 0
@@ -995,7 +995,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1492661467}
   m_LocalRotation: {x: 0, y: 0.9563047, z: 0, w: 0.2923718}
-  m_LocalPosition: {x: -1, y: 76, z: 6}
+  m_LocalPosition: {x: -1, y: 75, z: 6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1094,7 +1094,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1001 &1697515730
 PrefabInstance:
@@ -1109,7 +1109,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3850217451657733569, guid: beacecba5091ebf48800ae3f8f2d7776, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3850217451657733569, guid: beacecba5091ebf48800ae3f8f2d7776, type: 3}
       propertyPath: m_LocalScale.x
@@ -1468,7 +1468,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &856887293728866006
 MeshFilter:
