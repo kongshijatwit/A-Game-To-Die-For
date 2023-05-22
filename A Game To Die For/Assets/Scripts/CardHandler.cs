@@ -19,6 +19,7 @@ public class CardHandler : MonoBehaviour, IRaycastable
             // Send to board
             GameManager.instance.SendToBoard(gameObject);
             anim.enabled = false;
+            gameObject.layer = LayerMask.NameToLayer("Default");
         }
     }
 

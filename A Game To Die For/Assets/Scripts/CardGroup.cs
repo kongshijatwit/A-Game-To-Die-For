@@ -4,7 +4,7 @@ using UnityEngine;
 public class CardGroup : MonoBehaviour
 {
     [SerializeField] private Transform[] cards;
-    public float percent = 1f;
+    private float percent = 1f;
     public Transform[] cardPrefabList;
     private float distance = 5.5f;
     private float currY;
@@ -54,6 +54,14 @@ public class CardGroup : MonoBehaviour
 
     public IEnumerator LerpGroup(bool moveRight)
     {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (transform.GetChild(i).childCount > 0)
+            {
+                transform.GetChild(i).GetChild(0).gameObject.layer = LayerMask.NameToLayer("Default");
+            }
+        }
+
         float moveSpeed = 1f;
 
         if (moveRight)
@@ -66,7 +74,7 @@ public class CardGroup : MonoBehaviour
             }
 
             DeleteCards();
-            
+
             // Replace for random cards
             SetNewCards(cardPrefabList);
         }
@@ -78,6 +86,14 @@ public class CardGroup : MonoBehaviour
                 transform.position = new Vector3(Mathf.Lerp(currY, newY, percent), transform.position.y, transform.position.z);
                 percent += -moveSpeed * Time.deltaTime;
                 yield return new WaitForEndOfFrame();
+            }
+        }
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (transform.GetChild(i).childCount > 0)
+            {
+                transform.GetChild(i).GetChild(0).gameObject.layer = LayerMask.NameToLayer("Interactable");
             }
         }
     }

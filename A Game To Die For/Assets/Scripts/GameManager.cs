@@ -38,7 +38,6 @@ public class GameManager : MonoBehaviour
 
         // Transfer selected card, then drop rest
         playerCard.transform.parent = selectedCardsGroup.transform;
-        playerCard.layer = LayerMask.NameToLayer("Default");
         cardGroup.GetComponent<CardGroup>().MoveRight();
 
         // Calculate
