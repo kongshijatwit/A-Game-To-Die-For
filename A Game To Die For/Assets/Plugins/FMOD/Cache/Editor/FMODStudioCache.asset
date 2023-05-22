@@ -42,7 +42,7 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638203732233458974
+  lastModified: 638204003688240749
   FileSizes: []
   Exists: 1
 --- !u!114 &-5275751694044153961
@@ -65,6 +65,33 @@ MonoBehaviour:
   - Name: 
     Value: 948
   Exists: 1
+--- !u!114 &-5218785324634109141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ReaperLoss
+  m_EditorClassIdentifier: 
+  Path: event:/ReaperLoss
+  Guid:
+    Data1: 74103240
+    Data2: 1269866079
+    Data3: -726493538
+    Data4: 29467402
+  Banks:
+  - {fileID: -5892499319588767056}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 792
 --- !u!114 &-5109172183359738853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,12 +302,15 @@ MonoBehaviour:
   - {fileID: -3258256121903216259}
   - {fileID: -1737830252236590656}
   - {fileID: -4180767929686738820}
+  - {fileID: 4947107493850621578}
+  - {fileID: -5218785324634109141}
+  - {fileID: 7177623148834593821}
   EditorParameters: []
   MasterBanks:
   - {fileID: -5892499319588767056}
   StringsBanks:
   - {fileID: 9093646139931443077}
-  cacheTime: 638203732233519663
+  cacheTime: 638204003688250750
   cacheVersion: 131603
 --- !u!114 &4584930069567896751
 MonoBehaviour:
@@ -309,6 +339,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1370
+--- !u!114 &4947107493850621578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/HpLoss
+  m_EditorClassIdentifier: 
+  Path: event:/HpLoss
+  Guid:
+    Data1: -119048572
+    Data2: 1182895602
+    Data3: -418543727
+    Data4: 1746277982
+  Banks:
+  - {fileID: -5892499319588767056}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 792
+--- !u!114 &7177623148834593821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music
+  m_EditorClassIdentifier: 
+  Path: event:/Music
+  Guid:
+    Data1: -774708236
+    Data2: 1245536492
+    Data3: -1349358948
+    Data4: 1157812012
+  Banks:
+  - {fileID: -5892499319588767056}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 93000
 --- !u!114 &8172530541798007614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,8 +453,8 @@ MonoBehaviour:
   Path: Assets/FMODBanks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638203732233519663
+  lastModified: 638204003688250750
   FileSizes:
   - Name: 
-    Value: 948
+    Value: 1062
   Exists: 1
