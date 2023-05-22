@@ -179,7 +179,7 @@ TextureImporter:
         width: 30
         height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -200,7 +200,7 @@ TextureImporter:
         width: 30
         height: 13
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -221,7 +221,7 @@ TextureImporter:
         width: 30
         height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -234,10 +234,52 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GUI_0
+      name: Nine_Sclice_TL
       rect:
         serializedVersion: 2
         x: 2
+        y: 257
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd88043db0cfccf43a91bbc261fcfe8e
+      internalID: 746017262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nine_Slice_TM
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 257
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b591387efecd5fd43b733455bffa69ef
+      internalID: 890366940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nine_Slice_TR
+      rect:
+        serializedVersion: 2
+        x: 33
         y: 257
         width: 13
         height: 13
@@ -248,8 +290,134 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd88043db0cfccf43a91bbc261fcfe8e
-      internalID: 746017262
+      spriteID: e9b160ca018527940abbe31e4796ba97
+      internalID: -2421038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nine_Slice_L
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 239
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4be9b857c63f1f499a89ee015e3a945
+      internalID: -508669985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nine_Slice_M
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 239
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88d1d5e7e6e38844b9e6ee593290c42b
+      internalID: -1542041358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nine_Slice_R
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 239
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fac4a685ce36e3449a5b1e739b82825
+      internalID: 749994620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nine_Slice_BL
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 226
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 093075c4ade9ce74e8e3c8f49dffb05c
+      internalID: 1356510917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nine_Slice_BM
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 226
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1d81d291118db94bbb44c7175d6d159
+      internalID: 989229485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nine_Slice_BR
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 226
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e4475098ff356040910b25fd16dabb0
+      internalID: -1481115523
       vertices: []
       indices: 
       edges: []
@@ -265,12 +433,20 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      GUI_0: 746017262
       Health_Bar_0: -974123098
+      Nine_Slice_M: -1542041358
+      Nine_Slice_TM: 890366940
       GUI_Button_1: 1571547200
       Bar_Empty_0: 1827912801
+      Nine_Slice_BL: 1356510917
+      Nine_Slice_R: 749994620
+      Nine_Slice_BM: 989229485
+      Nine_Slice_TR: -2421038
+      Nine_Slice_L: -508669985
       GUI_Button_2: -1975389910
+      Nine_Slice_BR: -1481115523
       GUI_Button_0: -1572798808
+      Nine_Sclice_TL: 746017262
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

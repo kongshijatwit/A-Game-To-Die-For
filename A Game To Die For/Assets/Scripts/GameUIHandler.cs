@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class GameUIHandler : MonoBehaviour
 {
-    private void Start()
-    {
-        
-    }
+    [SerializeField] private GameObject pauseMenu;
+    private bool pauseMenuActive = false;
 
     private void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            pauseMenu.SetActive(!pauseMenuActive);
+            pauseMenuActive = !pauseMenuActive;
+        }
     }
 }
