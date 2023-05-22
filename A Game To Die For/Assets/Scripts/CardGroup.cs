@@ -23,7 +23,6 @@ public class CardGroup : MonoBehaviour
         { 
             Debug.LogWarning("Too many elements in cardprefab"); 
             return;
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Triple Draw", GetComponent<Transform>().position);
         }
 
         for (int i = 0; i < 3; i++)
@@ -106,6 +105,8 @@ public class CardGroup : MonoBehaviour
         float moveSpeed = 1f;
 
         yield return new WaitForSeconds(4f);
+
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Triple Draw", GetComponent<Transform>().position);
 
         for (int i = 0; i < transform.childCount; i++)
         {
