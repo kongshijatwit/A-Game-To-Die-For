@@ -109,7 +109,7 @@ public class CardGroup : MonoBehaviour
         {
             if (transform.GetChild(i).childCount > 0)
             {
-                transform.GetChild(i).GetChild(0).gameObject.layer = LayerMask.NameToLayer("Interactable");
+                transform.GetChild(i).GetChild(0).gameObject.layer = LayerMask.NameToLayer("Default");
             }
         }
 
@@ -118,6 +118,14 @@ public class CardGroup : MonoBehaviour
             transform.position = new Vector3(Mathf.Lerp(0f, 5.5f, percent), transform.position.y, transform.position.z);
             percent += -moveSpeed * Time.deltaTime;
             yield return new WaitForEndOfFrame();
+        }
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (transform.GetChild(i).childCount > 0)
+            {
+                transform.GetChild(i).GetChild(0).gameObject.layer = LayerMask.NameToLayer("Interactable");
+            }
         }
 
         currY = transform.position.x;
