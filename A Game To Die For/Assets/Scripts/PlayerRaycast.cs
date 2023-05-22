@@ -5,6 +5,11 @@ public class PlayerRaycast : MonoBehaviour
     private readonly float rayDistance = 5f;
     private Transform currentObject = null;
 
+    private void OnEnable() 
+    {
+        GameUIHandler.gameover += DisableRay;
+    }
+
     void Update()
     {
         Vector3 origin = Camera.main.transform.position;
@@ -23,5 +28,15 @@ public class PlayerRaycast : MonoBehaviour
 
         // Draws a ray in the scene view - remember to turn on gizmos
         Debug.DrawRay(origin, direction * rayDistance, Color.red);
+    }
+
+    private void DisableRay()
+    {
+        this.enabled = false;
+    }
+
+    private void OnDisable() 
+    {
+        GameUIHandler.gameover -= DisableRay;
     }
 }

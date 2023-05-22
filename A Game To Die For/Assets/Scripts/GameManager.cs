@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     [Header("Canvas Stuff")]
+    [SerializeField] private GameUIHandler gui;
     [SerializeField] private Slider playerHealth;
     [SerializeField] private Slider reaperHealth;
     [SerializeField] private TextMeshProUGUI scoreText;
@@ -119,7 +120,7 @@ public class GameManager : MonoBehaviour
         TakeDamage(playerHealth, FIXED_DAMAGE);
         if (playerHealth.value <= 0)
         {
-            // Show game over screen
+            gui.ShowGameOverMenu();
         }
     }
 
@@ -133,6 +134,7 @@ public class GameManager : MonoBehaviour
     private void PlayerAddLife()
     {
         Debug.Log("PlayerAddLife");
+        TakeDamage(playerHealth, -FIXED_DAMAGE);
     }
 
     private void RandomCard()

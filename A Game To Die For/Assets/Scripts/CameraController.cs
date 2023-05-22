@@ -18,6 +18,7 @@ public class CameraController : MonoBehaviour
     private void OnEnable() 
     {
         HideMouse();
+        GameUIHandler.gameover += ShowMouse;
     }
 
     private void Update()
@@ -41,6 +42,11 @@ public class CameraController : MonoBehaviour
 
     void LateUpdate() => transform.position = player.transform.position + offset;
 
+    private void OnDisable() 
+    {
+        GameUIHandler.gameover -= ShowMouse;
+    }
+
     #region Helper Functions for Mouse States
     private void StopMouse()
     {
@@ -52,6 +58,13 @@ public class CameraController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         mouseMoving = true;
+    }
+
+    private void ShowMouse()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        mouseMoving = false;
     }
 
 #if UNITY_EDITOR
