@@ -106,6 +106,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("PlayerWin");
         TakeDamage(reaperHealth, FIXED_DAMAGE);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/ReaperLoss", GetComponent<Transform>().position);
         if (reaperHealth.value <= 0)
         {
             score++;
@@ -118,6 +119,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("PlayerLose");
         TakeDamage(playerHealth, FIXED_DAMAGE);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/HpLoss", GetComponent<Transform>().position);
         if (playerHealth.value <= 0)
         {
             gui.ShowGameOverMenu();
