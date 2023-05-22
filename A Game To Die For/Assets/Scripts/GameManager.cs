@@ -2,14 +2,17 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    [Header("Health Bars")]
+    [Header("Canvas Stuff")]
     [SerializeField] private Slider playerHealth;
     [SerializeField] private Slider reaperHealth;
+    [SerializeField] private TextMeshProUGUI scoreText;
+    private int score = 0;
     private const float FIXED_DAMAGE = 0.25f;
 
     [Header("Card Objects")]
@@ -104,7 +107,9 @@ public class GameManager : MonoBehaviour
         TakeDamage(reaperHealth, FIXED_DAMAGE);
         if (reaperHealth.value <= 0)
         {
-            // Add 1 to matches won
+            score++;
+            scoreText.text = "Matches Survived : " + score;
+            reaperHealth.value = 1;
         }
     }
 
