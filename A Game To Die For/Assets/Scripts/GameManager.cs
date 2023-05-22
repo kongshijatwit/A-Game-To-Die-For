@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,18 +32,28 @@ public class GameManager : MonoBehaviour
         aiCard.GetComponent<Animator>().enabled = false;
         aiCard.gameObject.layer = LayerMask.NameToLayer("Default");
 
-        // Pull out RPS enum from GameObject
+        // Pull out RPS enum from GameObjects
         RPS playerChoice = playerCard.GetComponent<CardHandler>().getChoice();
         RPS aiChoice = aiCard.GetComponent<CardHandler>().getChoice();
-
-        // Calculate
-        Debug.Log("Player picked: " + playerChoice + " / AI picked: " + aiChoice);
-        Calculate(playerChoice, aiChoice);
 
         // Transfer selected card, then drop rest
         playerCard.transform.parent = selectedCardsGroup.transform;
         playerCard.layer = LayerMask.NameToLayer("Default");
         cardGroup.GetComponent<CardGroup>().MoveRight();
+
+        // Calculate
+        Debug.Log("Player picked: " + playerChoice + " / AI picked: " + aiChoice);
+        Calculate(playerChoice, aiChoice);
+
+        StartCoroutine(nameof(WaitForResults));
+    }
+
+    private IEnumerator WaitForResults()
+    {
+        yield return new WaitForSeconds(4f);
+        Destroy(selectedCardsGroup.transform.GetChild(0).gameObject);
+        Destroy(aiCardSelected.transform.GetChild(0).gameObject);
+        cardGroup.GetComponent<CardGroup>().MoveLeft();
     }
 
     private void TakeDamage(Slider recipiant, float amount)

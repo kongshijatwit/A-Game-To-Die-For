@@ -1,5 +1,67 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1437035194
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1437035195}
+  m_Layer: 0
+  m_Name: AI Selected Card
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1437035195
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437035194}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3988546588019612157}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1916603346
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1916603347}
+  m_Layer: 0
+  m_Name: Selected Card
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1916603347
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916603346}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3988546588019612157}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3988546586844215926
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,10 +178,10 @@ MonoBehaviour:
   - {fileID: 6762791054710160162}
   - {fileID: 6681555568057143288}
   percent: 0
-  cardPrefab:
-  - {fileID: 2709563256068320035, guid: f1df4486e0f98c043b7aa52c5850112b, type: 3}
+  cardPrefabList:
+  - {fileID: 8980300402606776333, guid: 2cb56b01541fecf43ac08867ae2c6f0d, type: 3}
   - {fileID: 3010660360732237480, guid: 0a1a82f0adc16ec4a9ce355202526934, type: 3}
-  - {fileID: 3010660360732237480, guid: 0a1a82f0adc16ec4a9ce355202526934, type: 3}
+  - {fileID: 8980300402606776333, guid: 2cb56b01541fecf43ac08867ae2c6f0d, type: 3}
 --- !u!1 &3988546588019612158
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,6 +212,8 @@ Transform:
   m_Children:
   - {fileID: 4590877241302350073}
   - {fileID: 3988546587355366149}
+  - {fileID: 1916603347}
+  - {fileID: 1437035195}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

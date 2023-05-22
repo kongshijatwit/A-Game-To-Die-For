@@ -47,6 +47,11 @@ public class CardGroup : MonoBehaviour
         StartCoroutine(nameof(LerpGroup), true);
     }
 
+    public void MoveLeft()
+    {
+        StartCoroutine(nameof(LerpGroup), false);
+    }
+
     public IEnumerator LerpGroup(bool moveRight)
     {
         float moveSpeed = 1f;
@@ -61,9 +66,9 @@ public class CardGroup : MonoBehaviour
             }
 
             DeleteCards();
-
+            
             // Replace for random cards
-            // SetNewCards();
+            SetNewCards(cardPrefabList);
         }
 
         if (!moveRight)
