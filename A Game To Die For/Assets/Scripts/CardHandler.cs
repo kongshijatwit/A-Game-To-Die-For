@@ -14,18 +14,22 @@ public class CardHandler : MonoBehaviour, IRaycastable
     {
         anim.SetBool("HoveringOver", true);
 
+
         if (Input.GetMouseButtonDown(0))
         {
-            // Send to board
+            // Send to board 
             GameManager.instance.SendToBoard(gameObject);
             anim.enabled = false;
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Card Handling", GetComponent<Transform>().position);
             gameObject.layer = LayerMask.NameToLayer("Default");
+            
         }
     }
 
     public void HandleNullRay(PlayerRaycast player)
     {
         anim.SetBool("HoveringOver", false);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Card Handling", GetComponent<Transform>().position);
     }
 
     public RPS getChoice()

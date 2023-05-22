@@ -22,7 +22,8 @@ public class CardGroup : MonoBehaviour
         if (cardPrefabs.Length > 3)
         { 
             Debug.LogWarning("Too many elements in cardprefab"); 
-            return; 
+            return;
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Triple Draw", GetComponent<Transform>().position);
         }
 
         for (int i = 0; i < 3; i++)
@@ -51,6 +52,7 @@ public class CardGroup : MonoBehaviour
     public void MoveLeft()
     {
         StartCoroutine(nameof(LerpGroup), false);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Triple Draw", GetComponent<Transform>().position);
     }
 
     public IEnumerator LerpGroup(bool moveRight)

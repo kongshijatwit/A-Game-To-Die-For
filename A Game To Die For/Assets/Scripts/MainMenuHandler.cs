@@ -10,11 +10,13 @@ public class MainMenuHandler : MonoBehaviour
     public void StartButtonClicked()
     {
         StartCoroutine(nameof(LoadNextScene));
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Click", GetComponent<Transform>().position);
     }
 
     public void QuitButtonClicked()
     {
         Application.Quit();
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Click", GetComponent<Transform>().position);
     }
 
     private IEnumerator LoadNextScene()
