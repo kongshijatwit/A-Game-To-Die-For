@@ -97,17 +97,25 @@ public class GameManager : MonoBehaviour
         }
     }
 
-#region 
+#region Player Conditions
     private void PlayerWin()
     {
         Debug.Log("PlayerWin");
         TakeDamage(reaperHealth, FIXED_DAMAGE);
+        if (reaperHealth.value <= 0)
+        {
+            // Add 1 to matches won
+        }
     }
 
     private void PlayerLose()
     {
         Debug.Log("PlayerLose");
         TakeDamage(playerHealth, FIXED_DAMAGE);
+        if (playerHealth.value <= 0)
+        {
+            // Show game over screen
+        }
     }
 
     private void PlayerDraw()

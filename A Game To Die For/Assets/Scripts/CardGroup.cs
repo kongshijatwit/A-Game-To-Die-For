@@ -4,7 +4,7 @@ using UnityEngine;
 public class CardGroup : MonoBehaviour
 {
     [SerializeField] private Transform[] cards;
-    private float percent = 1f;
+    private float percent = 0f;
     public Transform[] cardPrefabList;
     private float distance = 5.5f;
     private float currY;
