@@ -285,6 +285,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3988546587355366149, guid: 6f22c8eb89b013548b35c3dafaf60bfe, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3988546587355366150, guid: 6f22c8eb89b013548b35c3dafaf60bfe, type: 3}
       propertyPath: cards.Array.data[0]
       value: 

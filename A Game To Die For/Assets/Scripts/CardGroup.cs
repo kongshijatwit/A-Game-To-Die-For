@@ -4,7 +4,7 @@ using UnityEngine;
 public class CardGroup : MonoBehaviour
 {
     [SerializeField] private Transform[] cards;
-    private float percent = 0f;
+    public float percent = 1f;
     public Transform[] cardPrefabList;
     private float distance = 5.5f;
     private float currY;
@@ -14,6 +14,7 @@ public class CardGroup : MonoBehaviour
     {
         currY = transform.position.x;
         newY = currY + distance;
+        StartCoroutine(nameof(StartingLerp));
     }
 
     public void SetNewCards(Transform[] cardPrefabs)
@@ -96,5 +97,30 @@ public class CardGroup : MonoBehaviour
                 transform.GetChild(i).GetChild(0).gameObject.layer = LayerMask.NameToLayer("Interactable");
             }
         }
+    }
+
+    public IEnumerator StartingLerp()
+    {
+        float moveSpeed = 1f;
+
+        yield return new WaitForSeconds(4f);
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (transform.GetChild(i).childCount > 0)
+            {
+                transform.GetChild(i).GetChild(0).gameObject.layer = LayerMask.NameToLayer("Interactable");
+            }
+        }
+
+        while (percent > 0)
+        {
+            transform.position = new Vector3(Mathf.Lerp(0f, 5.5f, percent), transform.position.y, transform.position.z);
+            percent += -moveSpeed * Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        currY = transform.position.x;
+        newY = currY + distance;
     }
 }
