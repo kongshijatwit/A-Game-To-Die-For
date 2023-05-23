@@ -38,6 +38,13 @@ public class CameraController : MonoBehaviour
             transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
             player.rotation = Quaternion.Euler(0, yRotation, 0);
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            mouseMoving = !mouseMoving;
+            Cursor.lockState = mouseMoving ? CursorLockMode.Locked : CursorLockMode.None;
+            Cursor.visible = !mouseMoving;
+        }
     }
 
     void LateUpdate() => transform.position = player.transform.position + offset;

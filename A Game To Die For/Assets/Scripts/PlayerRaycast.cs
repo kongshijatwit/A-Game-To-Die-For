@@ -1,7 +1,9 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerRaycast : MonoBehaviour
 {
+    [SerializeField] private Image currCross;
     private readonly float rayDistance = 5f;
     private Transform currentObject = null;
 
@@ -32,6 +34,7 @@ public class PlayerRaycast : MonoBehaviour
 
     private void DisableRay()
     {
+        currCross.enabled = false;
         this.enabled = false;
     }
 
