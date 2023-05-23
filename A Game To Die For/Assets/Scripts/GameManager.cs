@@ -163,4 +163,9 @@ public class GameManager : MonoBehaviour
         TakeDamage(playerHealth, -FIXED_DAMAGE);
     }
 #endregion
+
+    public float GetPlayerHealth()
+    {
+        return playerHealth.value;
+    }
 }
