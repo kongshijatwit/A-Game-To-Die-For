@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class RandomCardPicker
 {
+    private int BASECARD_CHANCE = 85;
+
     private Transform[] allCardPrefabs;
 
     public RandomCardPicker(Transform[] allCardPrefabs)
@@ -24,8 +26,15 @@ public class RandomCardPicker
     public Transform PickOne()
     {
         Transform result = null;
-        int percent = Random.Range(0, allCardPrefabs.Length);
-        result = allCardPrefabs[percent];
+        int randNum = ((int)Time.time * Random.Range(0, 100)) % 101;
+        Debug.Log(randNum);
+
+        if(randNum <= BASECARD_CHANCE) {
+            int percent = Random.Range(0, allCardPrefabs.Length-1);
+            result = allCardPrefabs[percent];
+        } else {
+            result = allCardPrefabs[allCardPrefabs.Length-1];
+        }
         return result;
     }
 }
