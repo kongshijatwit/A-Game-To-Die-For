@@ -82,9 +82,16 @@ public class GameManager : MonoBehaviour
             PlayerDraw();
             return;
         }
+        if (aiChoice == RPS.MYSTERY)
+        {
+            TakeDamage(playerHealth, FIXED_DAMAGE*2);
+        }
 
         switch (playerChoice)
         {
+            case RPS.MYSTERY:
+                PlayerMystery();
+                return;
             case RPS.LIFE:
                 PlayerAddLife();
                 return;
@@ -139,6 +146,17 @@ public class GameManager : MonoBehaviour
 #endregion
 
 #region Other Card Conditions
+    private void PlayerMystery()
+    {
+        TakeDamage(reaperHealth, FIXED_DAMAGE*2);
+        if (reaperHealth.value <= 0)
+        {
+            score++;
+            scoreText.text = "Matches Survived : " + score;
+            reaperHealth.value = 1;
+        }
+    }
+
     private void PlayerAddLife()
     {
         Debug.Log("PlayerAddLife");
