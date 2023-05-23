@@ -20,27 +20,31 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject cardGroup;
     [SerializeField] private GameObject selectedCardsGroup;
     [SerializeField] private GameObject aiCardSelected;
+    private RandomCardPicker randomCardPicker;
 
     [Header("AI Card Prefabs")]
-    [SerializeField] private GameObject[] aiCardPrefabs;
+    [SerializeField] private Transform[] aiCardPrefabs;
 
     private void Awake() 
     {
         instance = this;
+        randomCardPicker = new RandomCardPicker(aiCardPrefabs);
     }
 
     public void SendToBoard(GameObject playerCard)
     {
         // AI picks a card
-        Transform aiCard = Instantiate(aiCardPrefabs[UnityEngine.Random.Range(0, 3)].transform, aiCardSelected.transform);
+        GameObject aiCard = Instantiate(aiCardPrefabs[UnityEngine.Random.Range(0, 3)].gameObject, aiCardSelected.transform);
         aiCard.GetComponent<Animator>().enabled = false;
-        aiCard.gameObject.layer = LayerMask.NameToLayer("Default");
+        aiCard.layer = LayerMask.NameToLayer("Default");
 
         // Pull out RPS enum from GameObjects
         RPS playerChoice = playerCard.GetComponent<CardHandler>().getChoice();
         RPS aiChoice = aiCard.GetComponent<CardHandler>().getChoice();
 
         // Transfer selected card, then drop rest
+        playerCard.GetComponent<Animator>().enabled = false;
+        playerCard.layer = LayerMask.NameToLayer("Default");
         playerCard.transform.parent = selectedCardsGroup.transform;
         cardGroup.GetComponent<CardGroup>().MoveRight();
 
@@ -54,8 +58,14 @@ public class GameManager : MonoBehaviour
     private IEnumerator WaitForResults()
     {
         yield return new WaitForSeconds(4f);
-        Destroy(selectedCardsGroup.transform.GetChild(0).gameObject);
-        Destroy(aiCardSelected.transform.GetChild(0).gameObject);
+        foreach (Transform child in selectedCardsGroup.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (Transform child in aiCardSelected.transform)
+        {
+            Destroy(child.gameObject);
+        }
         cardGroup.GetComponent<CardGroup>().MoveLeft();
     }
 
@@ -75,10 +85,6 @@ public class GameManager : MonoBehaviour
 
         switch (playerChoice)
         {
-            case RPS.MYSTERY:
-                RandomCard();
-                return;
-
             case RPS.LIFE:
                 PlayerAddLife();
                 return;
@@ -137,11 +143,6 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("PlayerAddLife");
         TakeDamage(playerHealth, -FIXED_DAMAGE);
-    }
-
-    private void RandomCard()
-    {
-        Debug.Log("RandomCard");
     }
 #endregion
 }

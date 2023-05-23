@@ -19,10 +19,7 @@ public class CardHandler : MonoBehaviour, IRaycastable
         {
             // Send to board 
             GameManager.instance.SendToBoard(gameObject);
-            anim.enabled = false;
             FMODUnity.RuntimeManager.PlayOneShot("event:/Card Handling", GetComponent<Transform>().position);
-            gameObject.layer = LayerMask.NameToLayer("Default");
-            
         }
     }
 

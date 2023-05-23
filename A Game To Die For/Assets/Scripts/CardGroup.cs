@@ -5,6 +5,7 @@ public class CardGroup : MonoBehaviour
 {
     [SerializeField] private Transform[] cards;
     public float percent = 1f;
+    RandomCardPicker randomCardPicker;
     public Transform[] cardPrefabList;
     private float distance = 5.5f;
     private float currY;
@@ -12,6 +13,7 @@ public class CardGroup : MonoBehaviour
 
     private void Start()
     {
+        randomCardPicker = new RandomCardPicker(cardPrefabList);
         currY = transform.position.x;
         newY = currY + distance;
         StartCoroutine(nameof(StartingLerp));
@@ -78,7 +80,7 @@ public class CardGroup : MonoBehaviour
             DeleteCards();
 
             // Replace for random cards
-            SetNewCards(cardPrefabList);
+            SetNewCards(randomCardPicker.PickThree());
         }
 
         if (!moveRight)
