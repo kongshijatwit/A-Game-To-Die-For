@@ -11,7 +11,7 @@ public class SpinningCard : MonoBehaviour
 
     private void Start()
     {
-        mr = new MeshRenderer[3];
+        mr = new MeshRenderer[transform.childCount];
         for (int i = 0; i < transform.childCount; i++)
         {
             mr[i] = transform.GetChild(i).GetComponent<MeshRenderer>();
