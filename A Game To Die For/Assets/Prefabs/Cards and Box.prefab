@@ -1,67 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1437035194
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1437035195}
-  m_Layer: 0
-  m_Name: AI Selected Card
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1437035195
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1437035194}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.8, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3988546588019612157}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1916603346
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1916603347}
-  m_Layer: 0
-  m_Name: Selected Card
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1916603347
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1916603346}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.8, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3988546588019612157}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3988546586844215926
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,7 +89,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3988546587355366151}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 5.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -173,14 +111,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e25982e56a4a050468a7f30cc2206413, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cards:
-  - {fileID: 7632240826768923681}
-  - {fileID: 5474765673662093030}
-  - {fileID: 3932571430831406659}
-  cardPrefabList:
+  allCardsToBePulled:
   - {fileID: 8980300402606776333, guid: 2cb56b01541fecf43ac08867ae2c6f0d, type: 3}
   - {fileID: 3010660360732237480, guid: 0a1a82f0adc16ec4a9ce355202526934, type: 3}
-  - {fileID: 8980300402606776333, guid: 2cb56b01541fecf43ac08867ae2c6f0d, type: 3}
+  - {fileID: 2709563256068320035, guid: f1df4486e0f98c043b7aa52c5850112b, type: 3}
+  - {fileID: 7774214194538566024, guid: bc4a9e22f4ade64408ed8a5487b8889e, type: 3}
+  - {fileID: 7674251821499185199, guid: b5808913fba941342a7b0bb215038e5f, type: 3}
 --- !u!1 &3988546588019612158
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,8 +147,6 @@ Transform:
   m_Children:
   - {fileID: 4590877241302350073}
   - {fileID: 3988546587355366149}
-  - {fileID: 1916603347}
-  - {fileID: 1437035195}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

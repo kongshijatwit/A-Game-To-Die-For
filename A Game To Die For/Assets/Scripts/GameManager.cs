@@ -1,26 +1,26 @@
 using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    private const float FIXED_DAMAGE = 0.25f;
+
     public static GameManager instance;
 
+    // Can put these in a GameUIHandler.cs script and reference the GameObject
     [Header("Canvas Stuff")]
     [SerializeField] private GameUIHandler gui;
     [SerializeField] private Slider playerHealth;
     [SerializeField] private Slider reaperHealth;
     [SerializeField] private TextMeshProUGUI scoreText;
     private int score = 0;
-    private const float FIXED_DAMAGE = 0.25f;
 
     [Header("Card Objects")]
     [SerializeField] private GameObject cardGroup;
-    [SerializeField] private GameObject selectedCardsGroup;
-    [SerializeField] private GameObject aiCardSelected;
-    private RandomCardPicker randomCardPicker;
+    private GameObject aiSelectedCard = null;
+    private GameObject playerSelectedCard = null;
 
     [Header("AI Card Prefabs")]
     [SerializeField] private Transform[] aiCardPrefabs;
@@ -28,45 +28,64 @@ public class GameManager : MonoBehaviour
     private void Awake() 
     {
         instance = this;
-        randomCardPicker = new RandomCardPicker(aiCardPrefabs);
     }
 
     public void SendToBoard(GameObject playerCard)
     {
         // AI picks a card
-        GameObject aiCard = Instantiate(aiCardPrefabs[UnityEngine.Random.Range(0, 3)].gameObject, aiCardSelected.transform);
-        aiCard.GetComponent<Animator>().enabled = false;
-        aiCard.layer = LayerMask.NameToLayer("Default");
+        aiSelectedCard = Instantiate(aiCardPrefabs[UnityEngine.Random.Range(0, 3)].gameObject);
+        aiSelectedCard.transform.position = new Vector3(0f, 2.3f, 3f);
+        CardToStatic(aiSelectedCard);
 
         // Pull out RPS enum from GameObjects
         RPS playerChoice = playerCard.GetComponent<CardHandler>().getChoice();
-        RPS aiChoice = aiCard.GetComponent<CardHandler>().getChoice();
+        RPS aiChoice = aiSelectedCard.GetComponent<CardHandler>().getChoice();
 
         // Transfer selected card, then drop rest
-        playerCard.GetComponent<Animator>().enabled = false;
-        playerCard.layer = LayerMask.NameToLayer("Default");
-        playerCard.transform.parent = selectedCardsGroup.transform;
+        playerSelectedCard = playerCard;
+        playerSelectedCard.transform.parent.DetachChildren();
+        CardToStatic(playerSelectedCard);
         cardGroup.GetComponent<CardGroup>().MoveRight();
 
         // Calculate
-        Debug.Log("Player picked: " + playerChoice + " / AI picked: " + aiChoice);
         Calculate(playerChoice, aiChoice);
-
-        StartCoroutine(nameof(WaitForResults));
+        Invoke(nameof(RespawnCards), 3f);
     }
 
-    private IEnumerator WaitForResults()
+    private void RespawnCards()
     {
-        yield return new WaitForSeconds(4f);
-        foreach (Transform child in selectedCardsGroup.transform)
-        {
-            Destroy(child.gameObject);
-        }
-        foreach (Transform child in aiCardSelected.transform)
-        {
-            Destroy(child.gameObject);
-        }
+        Destroy(aiSelectedCard);
+        Destroy(playerSelectedCard);
         cardGroup.GetComponent<CardGroup>().MoveLeft();
+    }
+
+    private void Calculate(RPS playerChoice, RPS aiChoice)
+    {
+        if (playerChoice == aiChoice) return;
+
+        switch (playerChoice, aiChoice)
+        {
+            case (RPS.ROCK, RPS.PAPER):
+            case (RPS.PAPER, RPS.SCISSORS):
+            case (RPS.SCISSORS, RPS.ROCK):
+                PlayerLose();
+                break;
+            case (RPS.MYSTERY, _):
+                PlayerMystery();
+                break;
+            case (RPS.LIFE, _):
+                PlayerAddLife();
+                break;
+            default:
+                PlayerWin();
+                return;
+        }
+    }
+
+    private void CardToStatic(GameObject card)
+    {
+        card.GetComponent<Animator>().enabled = false;
+        card.layer = LayerMask.NameToLayer("Default");
     }
 
     private void TakeDamage(Slider recipiant, float amount)
@@ -75,49 +94,9 @@ public class GameManager : MonoBehaviour
         Math.Round(recipiant.value, 2);
     }
 
-    private void Calculate(RPS playerChoice, RPS aiChoice)
-    {
-        if (playerChoice == aiChoice) 
-        { 
-            PlayerDraw();
-            return;
-        }
-        if (aiChoice == RPS.MYSTERY)
-        {
-            TakeDamage(playerHealth, FIXED_DAMAGE*2);
-        }
-
-        switch (playerChoice)
-        {
-            case RPS.MYSTERY:
-                PlayerMystery();
-                return;
-            case RPS.LIFE:
-                PlayerAddLife();
-                return;
-        }
-
-        switch (playerChoice, aiChoice)
-        {
-            case (RPS.ROCK, RPS.PAPER):
-                PlayerLose();
-                break;
-            case (RPS.PAPER, RPS.SCISSORS):
-                PlayerLose();
-                break;
-            case (RPS.SCISSORS, RPS.ROCK):
-                PlayerLose();
-                break;
-            default:
-                PlayerWin();
-                return;
-        }
-    }
-
 #region Player Conditions
     private void PlayerWin()
     {
-        Debug.Log("PlayerWin");
         TakeDamage(reaperHealth, FIXED_DAMAGE);
         FMODUnity.RuntimeManager.PlayOneShot("event:/ReaperLoss", GetComponent<Transform>().position);
         if (reaperHealth.value <= 0)
@@ -130,18 +109,12 @@ public class GameManager : MonoBehaviour
 
     private void PlayerLose()
     {
-        Debug.Log("PlayerLose");
         TakeDamage(playerHealth, FIXED_DAMAGE);
         FMODUnity.RuntimeManager.PlayOneShot("event:/HpLoss", GetComponent<Transform>().position);
         if (playerHealth.value <= 0)
         {
             gui.ShowGameOverMenu();
         }
-    }
-
-    private void PlayerDraw()
-    {
-        Debug.Log("PlayerDraw");
     }
 #endregion
 
@@ -159,7 +132,6 @@ public class GameManager : MonoBehaviour
 
     private void PlayerAddLife()
     {
-        Debug.Log("PlayerAddLife");
         TakeDamage(playerHealth, -FIXED_DAMAGE);
     }
 #endregion
