@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     private int score = 0;
 
     [Header("Card Objects")]
-    [SerializeField] private GameObject cardGroup;
+    [SerializeField] private CardGroup cardGroup;
     private GameObject aiSelectedCard = null;
     private GameObject playerSelectedCard = null;
 
@@ -32,20 +32,22 @@ public class GameManager : MonoBehaviour
 
     public void SendToBoard(GameObject playerCard)
     {
-        // AI picks a card
+        // Detach player card from parent
+        playerSelectedCard = playerCard;
+        playerSelectedCard.transform.parent.DetachChildren();
+        CardToStatic(playerSelectedCard);
+
+        // Create AI card
         aiSelectedCard = Instantiate(aiCardPrefabs[UnityEngine.Random.Range(0, 3)].gameObject);
         aiSelectedCard.transform.position = new Vector3(0f, 2.3f, 3f);
         CardToStatic(aiSelectedCard);
 
         // Pull out RPS enum from GameObjects
-        RPS playerChoice = playerCard.GetComponent<CardHandler>().getChoice();
+        RPS playerChoice = playerSelectedCard.GetComponent<CardHandler>().getChoice();
         RPS aiChoice = aiSelectedCard.GetComponent<CardHandler>().getChoice();
 
-        // Transfer selected card, then drop rest
-        playerSelectedCard = playerCard;
-        playerSelectedCard.transform.parent.DetachChildren();
-        CardToStatic(playerSelectedCard);
-        cardGroup.GetComponent<CardGroup>().MoveRight();
+        // Move cards into box
+        cardGroup.MoveRight();
 
         // Calculate
         Calculate(playerChoice, aiChoice);
@@ -56,7 +58,7 @@ public class GameManager : MonoBehaviour
     {
         Destroy(aiSelectedCard);
         Destroy(playerSelectedCard);
-        cardGroup.GetComponent<CardGroup>().MoveLeft();
+        cardGroup.MoveLeft();
     }
 
     private void Calculate(RPS playerChoice, RPS aiChoice)
@@ -80,18 +82,6 @@ public class GameManager : MonoBehaviour
                 PlayerWin();
                 return;
         }
-    }
-
-    private void CardToStatic(GameObject card)
-    {
-        card.GetComponent<Animator>().enabled = false;
-        card.layer = LayerMask.NameToLayer("Default");
-    }
-
-    private void TakeDamage(Slider recipiant, float amount)
-    {
-        recipiant.value -= amount;
-        Math.Round(recipiant.value, 2);
     }
 
 #region Player Conditions
@@ -118,7 +108,7 @@ public class GameManager : MonoBehaviour
     }
 #endregion
 
-#region Other Card Conditions
+#region Card Conditions
     private void PlayerMystery()
     {
         TakeDamage(reaperHealth, FIXED_DAMAGE*2);
@@ -133,6 +123,18 @@ public class GameManager : MonoBehaviour
     private void PlayerAddLife()
     {
         TakeDamage(playerHealth, -FIXED_DAMAGE);
+    }
+
+    private void CardToStatic(GameObject card)
+    {
+        card.GetComponent<Animator>().enabled = false;
+        card.layer = LayerMask.NameToLayer("Default");
+    }
+
+    private void TakeDamage(Slider recipiant, float amount)
+    {
+        recipiant.value -= amount;
+        Math.Round(recipiant.value, 2);
     }
 #endregion
 

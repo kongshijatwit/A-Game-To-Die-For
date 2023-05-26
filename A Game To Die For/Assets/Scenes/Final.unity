@@ -540,7 +540,7 @@ PrefabInstance:
     - target: {fileID: 6672224500749772415, guid: 6b0a9c8b221ca44489de34da7af3debc, type: 3}
       propertyPath: cardGroup
       value: 
-      objectReference: {fileID: 410752740}
+      objectReference: {fileID: 410752742}
     - target: {fileID: 6672224500749772415, guid: 6b0a9c8b221ca44489de34da7af3debc, type: 3}
       propertyPath: scoreText
       value: 
@@ -579,11 +579,17 @@ PrefabInstance:
       objectReference: {fileID: 2709563256068320035, guid: f1df4486e0f98c043b7aa52c5850112b, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b0a9c8b221ca44489de34da7af3debc, type: 3}
---- !u!1 &410752740 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3988546587355366151, guid: 6f22c8eb89b013548b35c3dafaf60bfe, type: 3}
+--- !u!114 &410752742 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3988546587355366150, guid: 6f22c8eb89b013548b35c3dafaf60bfe, type: 3}
   m_PrefabInstance: {fileID: 461556308}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e25982e56a4a050468a7f30cc2206413, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &461556308
 PrefabInstance:
   m_ObjectHideFlags: 0

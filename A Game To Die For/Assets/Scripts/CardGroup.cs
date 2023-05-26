@@ -44,23 +44,28 @@ public class CardGroup : MonoBehaviour
         float percent = 0;
         float currPos = transform.position.x;
 
+        // Make cards unclickable while moving
         ChangeChildLayer("Default");
 
         while (percent <= 1)
         {
+            // Moving group using Mathf.Lerp
             transform.position = new Vector3(Mathf.Lerp(currPos, newPos, percent), transform.position.y, transform.position.z);
             percent += MOVE_SPEED * Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
 
+        // Round off any long floats - more consistency
         transform.position = new Vector3((float)Math.Round(transform.position.x, 2), transform.position.y, transform.position.z);
 
+        // Only redraw when the cards are in the box
         if (redraw)
         {
             DeleteCards();
             SetNewCards(randomCardPicker.PickThree());
         }
 
+        // Make cards clickable again
         ChangeChildLayer("Interactable");
     }
 
